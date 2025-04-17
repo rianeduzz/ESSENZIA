@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Register() {
+export default function Perfil() {
     return (
         <View style={styles.container}>
-            <Text style={styles.message}>Crie sua conta e aproveite a ESSENZIA!</Text>
+            <Text style={styles.message}>Gerencie seu perfil aqui!</Text>
         </View>
     );
 }
