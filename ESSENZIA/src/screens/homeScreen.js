@@ -2,22 +2,18 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.message}>Descubra seu estilo com a ESSENZIA!</Text>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text>Esta é a tela Home!</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    message: {
-        fontSize: 16,
-        color: '#333',
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
 });
