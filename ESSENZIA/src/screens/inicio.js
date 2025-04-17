@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Inicio({ navigation }) {
   return (
     <ImageBackground
-      source={require('../../assets/telainicio.png')} // Atualizado para usar o fundo correto
+       
       style={styles.background}
     >
       <View style={styles.content}>
@@ -28,15 +28,14 @@ export default function Inicio({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    width: Dimensions.get('window').width, // Largura da tela
-    height: Dimensions.get('window').height, // Altura da tela
+    flex: 1,
+    resizeMode: 'cover',
   },
   content: {
     flex: 1,
-    justifyContent: 'flex-start', // Posiciona os elementos no início
-    alignItems: 'center', // Centraliza horizontalmente
-    marginTop: 550, // Move os elementos mais para baixo
-    paddingHorizontal: 20, // Adiciona espaçamento lateral
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 50,
   },
   title: {
     fontSize: 36,
