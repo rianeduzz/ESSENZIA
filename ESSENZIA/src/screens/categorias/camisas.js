@@ -1,9 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Camisas() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Feather name="arrow-left" size={24} color="black" />
+      </TouchableOpacity>
       <Text style={styles.title}>Categoria: Camisas</Text>
       <Image
         source={{ uri: 'https://via.placeholder.com/300/32CD32' }}
@@ -38,5 +45,10 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
   },
 });

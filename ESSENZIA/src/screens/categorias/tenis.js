@@ -1,9 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 export default function Tenis() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Feather name="arrow-left" size={24} color="black" />
+      </TouchableOpacity>
       <Text style={styles.title}>Categoria: Tênis</Text>
       <Image
         source={{ uri: 'https://via.placeholder.com/300/FF4500' }}
@@ -23,6 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     padding: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
   },
   title: {
     fontSize: 24,
