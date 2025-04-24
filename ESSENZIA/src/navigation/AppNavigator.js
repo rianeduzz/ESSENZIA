@@ -9,6 +9,11 @@ import Categoria from '../screens/categoria';
 import Favorito from '../screens/favorito';
 import Perfil from '../screens/perfil';
 import Carregamento from '../screens/carregamento';
+import Femininos from '../screens/categorias/femininos';
+import Masculinos from '../screens/categorias/masculinos';
+import Camisas from '../screens/categorias/camisas';
+import Calças from '../screens/categorias/calças';
+import Tenis from '../screens/categorias/tenis';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,6 +57,11 @@ export default function AppNavigator() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="Feminino" component={Femininos} />
+      <Stack.Screen name="Masculino" component={Masculinos} />
+      <Stack.Screen name="Camisas" component={Camisas} />
+      <Stack.Screen name="Calças" component={Calças} />
+      <Stack.Screen name="Tênis" component={Tenis} />
     </Stack.Navigator>
   );
 }
