@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Perfil() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [userName, setUserName] = useState('Usuário');
-  const [email, setEmail] = useState('usuario@email.com');
-  const [password, setPassword] = useState('');
-
-  const handleSave = () => {
-    alert(`Perfil atualizado!\nNome: ${userName}\nEmail: ${email}`);
-    setIsEditing(false); // Sai do modo de edição
+  const handleEdit = () => {
+    alert('Editar perfil ainda não implementado.');
   };
 
   const handleLogout = () => {
@@ -19,48 +14,21 @@ export default function Perfil() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Perfil</Text>
-      {isEditing ? (
-        <>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome"
-            value={userName}
-            onChangeText={setUserName}
-            placeholderTextColor="gray"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            placeholderTextColor="gray"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Senha"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            placeholderTextColor="gray"
-          />
-          <TouchableOpacity style={styles.button} onPress={handleSave}>
-            <Text style={styles.buttonText}>Salvar Alterações</Text>
-          </TouchableOpacity>
-        </>
-      ) : (
-        <>
-          <Text style={styles.infoText}>Nome: {userName}</Text>
-          <Text style={styles.infoText}>Email: {email}</Text>
-          <TouchableOpacity style={styles.button} onPress={() => setIsEditing(true)}>
-            <Text style={styles.buttonText}>Editar Perfil</Text>
-          </TouchableOpacity>
-        </>
-      )}
-      <TouchableOpacity style={[styles.button, styles.logoutButton]} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Sair da Conta</Text>
-      </TouchableOpacity>
+      <View style={styles.avatarContainer}>
+        <Ionicons name="person-circle-outline" size={150} color="black" />
+      </View>
+      <Text style={styles.userName}>Usuário</Text>
+      <Text style={styles.email}>usuario@email.com</Text>
+      <View style={styles.actionsContainer}>
+        <TouchableOpacity style={styles.actionButton} onPress={handleEdit}>
+          <Ionicons name="create-outline" size={24} color="black" />
+          <Text style={styles.actionText}>Editar Perfil</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.actionButton} onPress={handleLogout}>
+          <Ionicons name="log-out-outline" size={24} color="red" />
+          <Text style={[styles.actionText, styles.logoutText]}>Sair da Conta</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -68,44 +36,40 @@ export default function Perfil() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
-  title: {
+  avatarContainer: {
+    marginBottom: 30,
+  },
+  userName: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
     color: '#000',
+    marginBottom: 10,
   },
-  input: {
+  email: {
+    fontSize: 18,
+    color: 'gray',
+    marginBottom: 40,
+  },
+  actionsContainer: {
     width: '100%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    alignItems: 'center',
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  actionText: {
     color: '#000',
+    fontSize: 18,
+    marginLeft: 10,
   },
-  infoText: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#000',
-  },
-  button: {
-    backgroundColor: '#000',
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  logoutButton: {
-    backgroundColor: '#ff0000',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
+  logoutText: {
+    color: 'red',
   },
 });
