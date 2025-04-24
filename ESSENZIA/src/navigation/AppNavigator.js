@@ -22,24 +22,36 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color, size, focused }) => {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = 'home';
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Categoria') {
-            iconName = 'grid';
+            iconName = focused ? 'grid' : 'grid-outline';
           } else if (route.name === 'Favorito') {
-            iconName = 'heart';
+            iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'Perfil') {
-            iconName = 'person';
+            iconName = focused ? 'person' : 'person-outline';
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <Ionicons
+              name={iconName}
+              size={focused ? 28 : 24} // Ícone maior quando ativo
+              color={color}
+            />
+          );
         },
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
+        tabBarShowLabel: false, // Remove os nomes abaixo dos ícones
+        tabBarStyle: {
+          height: 60, // Aumenta a altura da barra
+          paddingBottom: 10, // Ajusta o espaçamento inferior
+          paddingTop: 10, // Ajusta o espaçamento superior
+        },
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
