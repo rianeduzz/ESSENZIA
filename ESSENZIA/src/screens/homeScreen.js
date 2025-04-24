@@ -16,7 +16,7 @@ export default function HomeScreen() {
           placeholder="Pesquisar"
           placeholderTextColor="gray"
         />
-        <Ionicons name="lock-closed" size={20} color="gray" />
+        
       </View>
       <View style={styles.filterContainer}>
         <TouchableOpacity
