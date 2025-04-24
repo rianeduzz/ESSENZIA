@@ -5,7 +5,7 @@ export default function Carregamento({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace('Login');
-    }, 3000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, [navigation]);
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    width: 300,
-    height: 50,
+    width: 235,
+    height: 44,
   },
 });
