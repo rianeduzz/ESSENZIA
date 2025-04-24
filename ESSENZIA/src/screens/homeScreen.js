@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ESSENZIA</Text>
@@ -16,13 +19,22 @@ export default function HomeScreen() {
         <Ionicons name="lock-closed" size={20} color="gray" />
       </View>
       <View style={styles.filterContainer}>
-        <TouchableOpacity style={[styles.filterButton, styles.activeFilter]}>
-          <Text style={styles.filterTextActive}>Tudo</Text>
+        <TouchableOpacity
+          style={[styles.filterButton, styles.activeFilter]}
+          onPress={() => navigation.navigate('Todos')}
+        >
+          <Text style={styles.filterTextActive}>Todos</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
+        <TouchableOpacity
+          style={styles.filterButton}
+          onPress={() => navigation.navigate('Feminino')}
+        >
           <Text style={styles.filterText}>Feminino</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
+        <TouchableOpacity
+          style={styles.filterButton}
+          onPress={() => navigation.navigate('Masculino')}
+        >
           <Text style={styles.filterText}>Masculino</Text>
         </TouchableOpacity>
       </View>
