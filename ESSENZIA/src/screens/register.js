@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,7 +19,7 @@ export default function Register() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.logo}>ESSENZIA</Text>
+      <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
       <Text style={styles.subtitle}>Cadastre-se</Text>
       <Text style={styles.label}>Nome</Text>
       <TextInput
@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     left: 20,
   },
   logo: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    width: 200, // Ajuste proporcional
+    height: 30,
+    alignSelf: 'center',
     marginBottom: 10,
   },
   subtitle: {

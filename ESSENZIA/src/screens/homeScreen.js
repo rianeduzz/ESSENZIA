@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Image, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,7 +8,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ESSENZIA</Text>
+      <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
       <View style={styles.searchContainer}>
         <Ionicons name="search" size={20} color="gray" />
         <TextInput
@@ -49,9 +49,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 50,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  logo: {
+    width: 150, // Mantive o tamanho reduzido
+    height: 25,
+    alignSelf: 'flex-start', // Alinha a imagem para o canto esquerdo
     marginBottom: 20,
   },
   searchContainer: {

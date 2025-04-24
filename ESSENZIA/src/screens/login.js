@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,7 +18,7 @@ export default function Login() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.logo}>ESSENZIA</Text>
+      <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
       <Text style={styles.subtitle}>Faça login para continuar</Text>
       <Text style={styles.label}>Email</Text>
       <TextInput
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     left: 20,
   },
   logo: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    width: 200, // Reduzi ainda mais a largura
+    height: 30, // Reduzi ainda mais a altura proporcionalmente
+    alignSelf: 'center',
     marginBottom: 10,
   },
   subtitle: {
