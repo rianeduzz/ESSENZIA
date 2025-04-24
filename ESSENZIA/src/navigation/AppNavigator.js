@@ -8,6 +8,7 @@ import HomeScreen from '../screens/homeScreen';
 import Categoria from '../screens/categoria';
 import Favorito from '../screens/favorito';
 import Perfil from '../screens/perfil';
+import Carregamento from '../screens/carregamento';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,6 +48,7 @@ function TabNavigator() {
 export default function AppNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Carregamento" component={Carregamento} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={TabNavigator} />
