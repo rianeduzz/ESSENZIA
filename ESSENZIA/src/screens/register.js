@@ -1,39 +1,55 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   const handleRegister = () => {
-    // Apenas um alerta para simular o cadastro
-    alert(`Cadastro realizado!\nNome: ${name}\nEmail: ${email}`);
+    alert('Cadastro realizado com sucesso!');
+    navigation.replace('Login'); // Redireciona para a tela de login após cadastro
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </TouchableOpacity>
+      <Text style={styles.logo}>ESSENZIA</Text>
+      <Text style={styles.subtitle}>Cadastre-se</Text>
+      <Text style={styles.label}>Nome</Text>
       <TextInput
         style={styles.input}
-        placeholder="Nome"
+        placeholder="Digite seu nome"
         value={name}
         onChangeText={setName}
+        placeholderTextColor="gray"
       />
+      <Text style={styles.label}>Senha</Text>
       <TextInput
         style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
+        placeholder="Digite sua senha"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        placeholderTextColor="gray"
       />
+      <Text style={styles.label}>Email</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        placeholderTextColor="gray"
+      />
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.linkText}>Já possui uma conta?</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
@@ -44,33 +60,56 @@ export default function Register() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
     backgroundColor: '#fff',
+    padding: 20,
+    justifyContent: 'center',
   },
-  title: {
-    fontSize: 24,
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+  },
+  logo: {
+    fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 20,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: 'gray',
+    marginBottom: 30,
+  },
+  label: {
+    fontSize: 14,
+    color: 'black',
+    marginBottom: 5,
   },
   input: {
-    width: '100%',
     height: 50,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 20,
+    fontSize: 16,
+    color: 'black',
+  },
+  linkText: {
+    color: '#000',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 20,
   },
   button: {
     backgroundColor: '#000',
     paddingVertical: 15,
-    paddingHorizontal: 30,
     borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
