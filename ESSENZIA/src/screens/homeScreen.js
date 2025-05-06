@@ -9,34 +9,24 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
-      <View style={styles.searchContainer}>
-        <Ionicons name="search" size={20} color="gray" />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Pesquisar"
-          placeholderTextColor="gray"
-        />
-        
-      </View>
-      <View style={styles.filterContainer}>
-        <TouchableOpacity
-          style={[styles.filterButton, styles.activeFilter]}
-          onPress={() => navigation.navigate('Todos')}
-        >
-          <Text style={styles.filterTextActive}>Todos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.filterButton}
-          onPress={() => navigation.navigate('Feminino')}
-        >
-          <Text style={styles.filterText}>Feminino</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.filterButton}
-          onPress={() => navigation.navigate('Masculino')}
-        >
-          <Text style={styles.filterText}>Masculino</Text>
-        </TouchableOpacity>
+      <View style={styles.searchAndFilterContainer}>
+        <View style={styles.searchContainer}>
+          <Ionicons name="search" size={20} color="gray" />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Pesquisar"
+            placeholderTextColor="gray"
+          />
+        </View>
+        <View style={styles.filterContainer}>
+          <TouchableOpacity
+            style={[styles.filterButton, styles.activeFilter]}
+            onPress={() => navigation.navigate('Todos')}
+          >
+            <Text style={styles.filterTextActive}>Todos</Text>
+          </TouchableOpacity>
+          
+        </View>
       </View>
     </View>
   );
@@ -47,22 +37,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingTop: 30, // Reduz o espaço superior
   },
   logo: {
-    width: 150, // Mantive o tamanho reduzido
-    height: 25,
     alignSelf: 'flex-start', // Alinha a imagem para o canto esquerdo
-    marginBottom: 20,
+    marginBottom: 0, // Reduz o espaço entre a logo e os elementos abaixo
+    resizeMode: 'contain',
+    width: 150,
+    height: undefined,
+    aspectRatio: 1,
+  },
+  searchAndFilterContainer: {
+    marginTop: -10, // Move os elementos abaixo da logo um pouco mais para cima
+    marginBottom: 10, // Espaço entre o conjunto de pesquisa e navegação
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff', // Fundo branco
     borderRadius: 10,
+    borderWidth: 1, // Adiciona borda
+    borderColor: 'gray', // Cor da borda cinza
     paddingHorizontal: 10,
     paddingVertical: 8,
-    marginBottom: 20,
+    marginBottom: 10, // Espaço entre a barra de pesquisa e os botões de navegação
   },
   searchInput: {
     flex: 1,
@@ -75,13 +73,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   filterButton: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff', // Fundo branco
     borderRadius: 20,
+    borderWidth: 1, // Adiciona borda
+    borderColor: 'gray', // Cor da borda cinza
     paddingVertical: 8,
     paddingHorizontal: 15,
   },
   activeFilter: {
     backgroundColor: '#000',
+    borderWidth: 1, // Adiciona borda
+    borderColor: 'gray', // Cor da borda cinza
   },
   filterText: {
     color: 'gray',

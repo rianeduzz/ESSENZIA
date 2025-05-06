@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons'; // Substituir Ionicons por Feather
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Login from '../screens/login';
 import Register from '../screens/register';
 import HomeScreen from '../screens/homeScreen';
@@ -9,11 +10,11 @@ import Categoria from '../screens/categoria';
 import Favorito from '../screens/favorito';
 import Perfil from '../screens/perfil';
 import Carregamento from '../screens/carregamento';
-import Femininos from '../screens/categorias/femininos';
-import Masculinos from '../screens/categorias/masculinos';
 import Camisas from '../screens/categorias/camisas';
 import Calças from '../screens/categorias/calças';
 import Tenis from '../screens/categorias/tenis';
+import Blusas from '../screens/categorias/blusas';
+import Acessorios from '../screens/categorias/acessorios';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,31 +27,49 @@ function TabNavigator() {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
+            iconName = 'home';
           } else if (route.name === 'Categoria') {
-            iconName = focused ? 'grid' : 'grid-outline';
+            iconName = 'grid'; // Ícone mais bonito para categorias
           } else if (route.name === 'Favorito') {
-            iconName = focused ? 'heart' : 'heart-outline';
+            iconName = 'heart';
           } else if (route.name === 'Perfil') {
-            iconName = focused ? 'person' : 'person-outline';
+            iconName = 'user';
           }
 
           return (
-            <Ionicons
-              name={iconName}
-              size={focused ? 28 : 24} // Ícone maior quando ativo
-              color={color}
-            />
+            <div
+              style={{
+                backgroundColor: focused ? '#333' : 'transparent', // Fundo mais discreto
+                borderRadius: 20, // Fundo arredondado
+                padding: 8, // Espaçamento ajustado
+              }}
+            >
+              <Feather
+                name={iconName}
+                size={focused ? 24 : 20} // Ícone menor e mais minimalista
+                color={focused ? 'white' : color} // Ícone branco quando ativo
+              />
+            </div>
           );
         },
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: '#333',
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
         tabBarShowLabel: false, // Remove os nomes abaixo dos ícones
         tabBarStyle: {
-          height: 60, // Aumenta a altura da barra
-          paddingBottom: 10, // Ajusta o espaçamento inferior
-          paddingTop: 10, // Ajusta o espaçamento superior
+          height: 70, // Altura maior
+          paddingBottom: 16, // Espaçamento inferior ajustado
+          paddingTop: 16, // Espaçamento superior ajustado
+          position: 'absolute', // Posiciona a barra de forma absoluta
+          bottom: 10, // Move a barra mais para cima
+          marginHorizontal: 10, // Margem lateral para centralizar
+          borderRadius: 20, // Bordas arredondadas
+          backgroundColor: '#fff', // Fundo branco para contraste
+          shadowColor: '#000', // Sombra para destaque
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 5, // Sombra no Android
         },
       })}
     >
@@ -69,11 +88,11 @@ export default function AppNavigator() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={TabNavigator} />
-      <Stack.Screen name="Feminino" component={Femininos} />
-      <Stack.Screen name="Masculino" component={Masculinos} />
       <Stack.Screen name="Camisas" component={Camisas} />
+      <Stack.Screen name="Blusas" component={Blusas} />
       <Stack.Screen name="Calças" component={Calças} />
-      <Stack.Screen name="Tênis" component={Tenis} />
+      <Stack.Screen name="Tenis" component={Tenis} />
+      <Stack.Screen name="Acessorios" component={Acessorios} />
     </Stack.Navigator>
   );
 }

@@ -39,7 +39,7 @@ export default function Login() {
         placeholderTextColor="gray"
       />
       <TouchableOpacity>
-        <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
+        <Text style={[styles.forgotPassword, { textAlign: 'left' }]}>Esqueceu a senha?</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>

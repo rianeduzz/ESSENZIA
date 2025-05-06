@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Masculinos() {
+export default function Blusas() {
   const navigation = useNavigation();
 
   return (
@@ -11,13 +11,13 @@ export default function Masculinos() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.title}>Categoria: Masculino</Text>
+      <Text style={styles.title}>Categoria: Blusas</Text>
       <Image
-        source={{ uri: 'https://via.placeholder.com/300/1E90FF' }}
+        source={{ uri: 'https://via.placeholder.com/300/FF69B4' }}
         style={styles.image}
       />
       <Text style={styles.description}>
-        Descubra nossa linha de roupas e acessórios masculinos.
+        Explore nossa coleção de blusas para todas as ocasiões.
       </Text>
     </View>
   );
@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     padding: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
   },
   title: {
     fontSize: 24,
@@ -45,10 +50,5 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
   },
 });

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Femininos() {
+export default function Acessorios() {
   const navigation = useNavigation();
 
   return (
@@ -11,13 +11,13 @@ export default function Femininos() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.title}>Categoria: Feminino</Text>
+      <Text style={styles.title}>Categoria: Acessórios</Text>
       <Image
-        source={{ uri: 'https://via.placeholder.com/300/FF69B4' }}
+        source={{ uri: 'https://via.placeholder.com/300/1E90FF' }}
         style={styles.image}
       />
       <Text style={styles.description}>
-        Explore nossa coleção de roupas e acessórios femininos.
+        Descubra nossa linha de acessórios para complementar seu estilo.
       </Text>
     </View>
   );
@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#fff',
     padding: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
   },
   title: {
     fontSize: 24,
@@ -45,10 +50,5 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
   },
 });
