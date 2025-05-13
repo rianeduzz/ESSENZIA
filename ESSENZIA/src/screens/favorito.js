@@ -1,90 +1,179 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, FlatList, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 export default function Favorito() {
-  const navigation = useNavigation();
-
   const favoritos = [
-    { id: '1', nome: 'Item Favorito ', descricao: 'Descrição do item favorito ', foto: 'https://via.placeholder.com/50' },
-    { id: '2', nome: 'Item Favorito ', descricao: 'Descrição do item favorito', foto: 'https://via.placeholder.com/50' },
-    { id: '3', nome: 'Item Favorito ', descricao: 'Descrição do item favorito ', foto: 'https://via.placeholder.com/50' },
+    {
+      id: '1',
+      nome: 'Running Shoes',
+      imagem: require('../../assets/tenis.jpg'),
+      preco: '$235',
+      rating: 4.5,
+      reviews: 1045,
+    },
+    {
+      id: '2',
+      nome: 'Running Shoes',
+     
+      imagem: require('../../assets/tenis.jpg'),
+      preco: '$235',
+      rating: 4.5,
+      reviews: 1045,
+    },
+    {
+      id: '3',
+      nome: 'Running Shoes',
+     
+      imagem: require('../../assets/tenis.jpg'),
+      preco: '$235',
+      rating: 4.5,
+      reviews: 1045,
+    },
   ];
 
   const renderItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <View style={styles.itemContent}>
-        <Image source={{ uri: item.foto }} style={styles.itemImage} />
-        <View style={styles.itemTextContainer}>
-          <Text style={styles.itemText}>{item.nome}</Text>
-          <Text style={styles.itemDescription}>{item.descricao}</Text>
+    <View style={styles.itemCard}>
+      <Image source={item.imagem} style={styles.productImage} />
+      <View style={styles.itemInfo}>
+        <Image source={item.marca} style={styles.brandIcon} />
+        <Text style={styles.productName}>{item.nome}</Text>
+        <View style={styles.ratingRow}>
+          <FontAwesome name="star" size={14} color="#FFD700" />
+          <Text style={styles.ratingText}>
+            {item.rating} <Text style={styles.reviewText}>({item.reviews} Reviews)</Text>
+          </Text>
         </View>
-        <Ionicons name="heart" size={24} color="black" style={styles.heartIcon} />
+        <Text style={styles.price}>{item.preco}</Text>
       </View>
+      <Ionicons name="heart" size={24} color="black" />
     </View>
   );
 
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.title}>Meus Favoritos</Text>
+      <Text style={styles.title}>Favoritos</Text>
+
+      <View style={styles.searchBox}>
+        <View style={styles.searchContainer}>
+          <Ionicons name="search" size={20} color="gray" />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Pesquisar"
+            placeholderTextColor="gray"
+          />
+        </View>
+      </View>
+
       <FlatList
         data={favoritos}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        contentContainerStyle={styles.list}
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
+
+      <View style={styles.bottomBar}>
+        <TouchableOpacity>
+          <Ionicons name="home" size={24} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name="heart" size={24} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name="person" size={24} color="#fff" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 20,
-    marginTop: 25, // Adicionado marginTop
-  },
-  backButton: {
-    marginBottom: 20,
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    textAlign: 'center',
+    color: '#000',
   },
-  list: {
-    paddingBottom: 20,
+  searchBox: {
+    marginBottom: 20,
   },
-  itemContainer: {
-    padding: 15,
-    marginBottom: 10,
-  },
-  itemContent: {
+  searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Adicionado para espaçar os elementos
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    paddingHorizontal: 10,
+    paddingVertical: 8,
   },
-  itemImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+  searchInput: {
+    flex: 1,
+    marginLeft: 10,
     marginRight: 10,
+    fontSize: 16,
+    height: 32,
   },
-  itemTextContainer: {
+  itemCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  productImage: {
+    width: 64,
+    height: 64,
+    borderRadius: 12,
+    marginRight: 12,
+  },
+  itemInfo: {
     flex: 1,
   },
-  itemText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  brandIcon: {
+    width: 20,
+    height: 20,
+    marginBottom: 4,
+    resizeMode: 'contain',
   },
-  itemDescription: {
+  productName: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+    color: '#000',
+  },
+  ratingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  ratingText: {
     fontSize: 14,
-    color: '#666',
+    marginLeft: 4,
+    color: '#000',
   },
-  heartIcon: {
-    marginLeft: 50, // Ajustado para posicionar mais à direita
+  reviewText: {
+    color: '#888',
+    fontSize: 12,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  bottomBar: {
+    position: 'absolute',
+    bottom: 20,
+    left: 40,
+    right: 40,
+    backgroundColor: '#000',
+    borderRadius: 30,
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });
