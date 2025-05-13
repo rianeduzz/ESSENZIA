@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontSize: 16,
-    height: 32,
+    height: 40, // Aumenta a altura para evitar corte
+    paddingVertical: 0, // Remove padding vertical para centralizar o texto
   },
   filterContainer: {
     flexDirection: 'row',

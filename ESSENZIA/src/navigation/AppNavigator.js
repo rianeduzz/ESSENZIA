@@ -1,8 +1,10 @@
 import React from 'react';
+import { View } from 'react-native'; // ✅ Importação necessária para React Native
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons'; // Substituir Ionicons por Feather
+import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import Login from '../screens/login';
 import Register from '../screens/register';
 import HomeScreen from '../screens/homeScreen';
@@ -29,7 +31,7 @@ function TabNavigator() {
           if (route.name === 'Home') {
             iconName = 'home';
           } else if (route.name === 'Categoria') {
-            iconName = 'grid'; // Ícone mais bonito para categorias
+            iconName = 'grid';
           } else if (route.name === 'Favorito') {
             iconName = 'heart';
           } else if (route.name === 'Perfil') {
@@ -37,39 +39,42 @@ function TabNavigator() {
           }
 
           return (
-            <div
+            <View
               style={{
-                backgroundColor: focused ? '#333' : 'transparent', // Fundo mais discreto
-                borderRadius: 20, // Fundo arredondado
-                padding: 8, // Espaçamento ajustado
+                backgroundColor: focused ? '#333' : 'transparent', // Fundo branco quando selecionado
+                borderRadius: 50,
+                padding: 3,
               }}
             >
               <Feather
                 name={iconName}
-                size={focused ? 24 : 20} // Ícone menor e mais minimalista
-                color={focused ? 'white' : color} // Ícone branco quando ativo
+                size={focused ? 24 : 24}
+                color={focused ? '#fff' : color} // Ícone preto quando selecionado
               />
-            </div>
+            </View>
           );
         },
-        tabBarActiveTintColor: '#333',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: '#000',
+        tabBarInactiveTintColor: 'white',
         headerShown: false,
-        tabBarShowLabel: false, // Remove os nomes abaixo dos ícones
+        tabBarShowLabel: false,
         tabBarStyle: {
-          height: 70, // Altura maior
-          paddingBottom: 16, // Espaçamento inferior ajustado
-          paddingTop: 16, // Espaçamento superior ajustado
-          position: 'absolute', // Posiciona a barra de forma absoluta
-          bottom: 10, // Move a barra mais para cima
-          marginHorizontal: 10, // Margem lateral para centralizar
-          borderRadius: 20, // Bordas arredondadas
-          backgroundColor: '#fff', // Fundo branco para contraste
-          shadowColor: '#000', // Sombra para destaque
-          shadowOffset: { width: 0, height: 4 },
+          height: 70,
+          paddingBottom: 12,
+          paddingTop: 16,
+          position: 'absolute',
+          bottom: 70, // Ajusta a posição para evitar sobreposição
+          marginHorizontal: 50, // Diminui a largura da barra
+          borderRadius: 30, // Aumenta o borderRadius
+          backgroundColor: '#000', // Garante que apenas a barra branca seja visível
+          shadowColor: '#fff',
+          shadowOffset: { width: 20, height: 24 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
-          elevation: 5, // Sombra no Android
+          elevation: 10,
+        },
+        tabBarItemStyle: {
+          marginHorizontal: -10, // Aproxima os ícones
         },
       })}
     >
@@ -89,7 +94,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={TabNavigator} />
       <Stack.Screen name="Camisas" component={Camisas} />
-      <Stack.Screen name="Blusas" component={Blusas} />
+      <Stack.Screen name="Jaquetas" component={Blusas} />
       <Stack.Screen name="Calças" component={Calças} />
       <Stack.Screen name="Tenis" component={Tenis} />
       <Stack.Screen name="Acessorios" component={Acessorios} />

@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
 const categorias = [
-  { id: '1', nome: 'Camisas', imagem: require('../../assets/tenis.jpg'), tela: 'Camisas' },
-  { id: '2', nome: 'Blusas', imagem: require('../../assets/tenis.jpg'), tela: 'Blusas' },
-  { id: '3', nome: 'Calças', imagem: require('../../assets/tenis.jpg'), tela: 'Calças' },
-  { id: '4', nome: 'Tênis', imagem: require('../../assets/tenis.jpg'), tela: 'Tenis' },
-  { id: '5', nome: 'Acessórios', imagem: require('../../assets/tenis.jpg'), tela: 'Acessorios' },
+  { id: '1', nome: 'Camisas', imagem: require('../../assets/camisa.jpg'), tela: 'Camisas' },
+  { id: '2', nome: 'Jaquetas', imagem: require('../../assets/jaqueta.jpg'), tela: 'Jaquetas' },
+  { id: '3', nome: 'Calças', imagem: require('../../assets/calca.jpg'), tela: 'Calças' },
+  { id: '4', nome: 'Sapatos', imagem: require('../../assets/sapato.jpg'), tela: 'Tenis' },
+  { id: '5', nome: 'Acessórios', imagem: require('../../assets/acessorio.jpg'), tela: 'Acessorios' },
   
   
 ];

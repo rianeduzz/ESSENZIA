@@ -11,7 +11,7 @@ export default function Blusas() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.title}>Categoria: Blusas</Text>
+      <Text style={styles.title}>Categoria: Jaquetas</Text>
       <Image
         source={{ uri: 'https://via.placeholder.com/300/FF69B4' }}
         style={styles.image}

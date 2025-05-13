@@ -11,7 +11,7 @@ export default function Tenis() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Feather name="arrow-left" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.title}>Categoria: Tênis</Text>
+      <Text style={styles.title}>Categoria: Sapatos</Text>
       <Image
         source={{ uri: 'https://via.placeholder.com/300/FF4500' }}
         style={styles.image}

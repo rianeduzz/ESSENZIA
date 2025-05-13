@@ -72,17 +72,7 @@ export default function Favorito() {
         contentContainerStyle={{ paddingBottom: 100 }}
       />
 
-      <View style={styles.bottomBar}>
-        <TouchableOpacity>
-          <Ionicons name="home" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="heart" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="person" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
+      
     </View>
   );
 }
@@ -117,7 +107,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontSize: 16,
-    height: 32,
+    height: 40, // Aumenta a altura para evitar corte
+    paddingVertical: 0, // Remove padding vertical para centralizar o texto
   },
   itemCard: {
     flexDirection: 'row',

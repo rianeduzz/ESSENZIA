@@ -9,6 +9,10 @@ export default function Login() {
   const navigation = useNavigation();
 
   const handleLogin = () => {
+    if (!email || !password) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
     alert('Login realizado com sucesso!');
     navigation.replace('Home'); // Redireciona para a tela inicial após login
   };
