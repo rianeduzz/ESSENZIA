@@ -91,6 +91,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#cccccc',
   },
 });
