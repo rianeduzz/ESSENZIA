@@ -1,20 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { supabase } from '../../supabaseConfig';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
-      alert('Por favor, preencha todos os campos.');
+      Alert.alert('Atenção', 'Por favor, preencha todos os campos.');
       return;
     }
-    alert('Login realizado com sucesso!');
-    navigation.replace('Home'); // Redireciona para a tela inicial após login
+
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        Alert.alert('Erro ao fazer login', error.message);
+        setLoading(false);
+        return;
+      }
+
+      if (data?.user) {
+        navigation.replace('Home');
+      } else {
+        Alert.alert('Erro ao fazer login', 'Não foi possível autenticar este usuário.');
+      }
+    } catch {
+      Alert.alert('Erro inesperado', 'Tente novamente mais tarde.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -22,8 +47,10 @@ export default function Login() {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
+
       <Image source={require('../../assets/logo.jpeg')} style={styles.logo} />
       <Text style={styles.subtitle}>Faça login para continuar</Text>
+
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.input}
@@ -31,8 +58,10 @@ export default function Login() {
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
+        autoCapitalize="none"
         placeholderTextColor="gray"
       />
+
       <Text style={styles.label}>Senha</Text>
       <TextInput
         style={styles.input}
@@ -42,12 +71,25 @@ export default function Login() {
         secureTextEntry
         placeholderTextColor="gray"
       />
+
       <TouchableOpacity>
-        <Text style={[styles.forgotPassword, { textAlign: 'left' }]}>Esqueceu a senha?</Text>
+        <Text style={[styles.forgotPassword, { textAlign: 'left' }]}>
+          Esqueceu a senha?
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
+
+      <TouchableOpacity
+        style={[styles.button, loading && { opacity: 0.6 }]}
+        onPress={handleLogin}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Entrar</Text>
+        )}
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
         <Text style={styles.linkText}>Não tem uma conta? Cadastre-se</Text>
       </TouchableOpacity>
@@ -60,29 +102,29 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   backButton: {
     position: 'absolute',
     top: 40,
-    left: 20,
+    left: 20
   },
   logo: {
-    width: 200, // Reduzi ainda mais a largura
-    height: 30, // Reduzi ainda mais a altura proporcionalmente
+    width: 200,
+    height: 30,
     alignSelf: 'center',
-    marginBottom: 10,
+    marginBottom: 10
   },
   subtitle: {
     fontSize: 14,
     textAlign: 'center',
     color: 'gray',
-    marginBottom: 30,
+    marginBottom: 30
   },
   label: {
     fontSize: 14,
     color: 'black',
-    marginBottom: 5,
+    marginBottom: 5
   },
   input: {
     height: 50,
@@ -90,29 +132,28 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     marginBottom: 20,
     fontSize: 16,
-    color: 'black',
+    color: 'black'
   },
   forgotPassword: {
     fontSize: 14,
     color: 'gray',
-    textAlign: 'right',
-    marginBottom: 30,
+    marginBottom: 30
   },
   button: {
     backgroundColor: '#000',
     paddingVertical: 15,
     borderRadius: 5,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   linkText: {
     color: '#000',
     fontSize: 14,
     textAlign: 'center',
-    marginTop: 20,
-  },
+    marginTop: 20
+  }
 });

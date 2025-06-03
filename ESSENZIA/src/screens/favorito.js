@@ -77,7 +77,6 @@ export default function Favorito() {
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={{ paddingBottom: 100 }}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
 
       {/* Modal de confirmação */}
@@ -110,7 +109,6 @@ export default function Favorito() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -247,9 +245,5 @@ const styles = StyleSheet.create({
   confirmText: {
     color: '#fff',
     fontWeight: 'bold',
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#cccccc',
   },
 });
