@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 20, // mais espaço vertical
+    paddingVertical: 20,
   },
   imageWrapper: {
     width: 80,
