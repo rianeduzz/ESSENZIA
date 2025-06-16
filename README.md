@@ -143,9 +143,3 @@ ESSENZIA/
 ├── README.md          # Este guia
 └── .gitignore         # Arquivos e pastas ignorados pelo Git
 ```
-
----
-
-## 📄 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE). Sinta-se à vontade para contribuir!
